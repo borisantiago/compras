@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import compras.modelos.ProductosPedido;
-import compras.repository.ProductosPedidoRepository;
+import compras.modelos.ArticulosPedido;
+import compras.repository.ArticulosPedidoRepository;
 
 @RestController
-public class ProductosPedidoController {
+public class ArticulosPedidoController {
 	
 	@Autowired
-	private ProductosPedidoRepository propediRepository;
+	private ArticulosPedidoRepository propediRepository;
 	
 	@GetMapping("/productospedido")
-	public List<ProductosPedido> getProdcutosPedido(){
+	public List<ArticulosPedido> getProdcutosPedido(){
 		return propediRepository.findAll();
 	}
 	
 	@GetMapping("/productospedido/{id}")
-	public Optional<ProductosPedido> getProductosPedido(@PathVariable int id){
+	public Optional<ArticulosPedido> getProductosPedido(@PathVariable int id){
 		return propediRepository.findById(id);
 	}
 	
 	@PostMapping("/productosPedido")
-	public String createProductosPedido(@RequestBody ProductosPedido productosPedido) {
+	public String createProductosPedido(@RequestBody ArticulosPedido productosPedido) {
 		propediRepository.save(productosPedido);
-		return "Se guardo los productos del pedido : " + productosPedido.getId();
+		return "Se guardo los productos del pedido : " + productosPedido.getIdPedido();
 	}
 	
 	@DeleteMapping("/deleteid/{id}")

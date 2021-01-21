@@ -11,32 +11,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import compras.modelos.PedidoModel;
-import compras.repository.PedidosRepository;
+import compras.modelos.Pedido;
+import compras.repository.PedidoRepository;
 
 
 @RestController
-public class PedidosController {
+public class PedidoController {
 
 	@Autowired
-	private PedidosRepository pedidosRepository; 
-	
+	private PedidoRepository pedidosRepository; 
 	
 	@GetMapping("/pedidos")
-	public List<PedidoModel> getAllPedidos(){
+	public List<Pedido> getAllPedidos(){
 		return pedidosRepository.findAll();
 	}
 	
 	@GetMapping("/pedidos2/{id}")
-	public Optional<PedidoModel> getPedidosModel(@PathVariable int id){
+	public Optional<Pedido> getPedidosModel(@PathVariable int id){
 		return pedidosRepository.findById(id);
 	}
 	
 	@PostMapping("/pedido")
-	public String createPedido(@RequestBody PedidoModel pedidosModel){
+	public String createPedido(@RequestBody Pedido pedidosModel){
 		pedidosRepository.save(pedidosModel);
 		//PedidosModel insertPedidosModel	= pedidosRepository.insert(pedidosModel);
-		return "pedido creado" + pedidosModel.getId();
+		return "pedido creado" + pedidosModel.getIdPedido();
 	}
 	
 	@DeleteMapping("/delete/{id}")

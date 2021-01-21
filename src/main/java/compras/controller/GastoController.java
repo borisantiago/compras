@@ -11,29 +11,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import compras.modelos.GastoModel;
-import compras.repository.GastosRepository;
+import compras.modelos.Gasto;
+import compras.repository.GastoRepository;
 
 @RestController
-public class GastosController {
+public class GastoController {
 	
 	@Autowired 
-	private GastosRepository gastosRepository;
+	private GastoRepository gastosRepository;
 	
 	@GetMapping("/gastos")
-	public List<GastoModel> getAllGastos(){
+	public List<Gasto> getAllGastos(){
 		return gastosRepository.findAll();
 	}
 	
 	@GetMapping("/gasto/{id}")
-	public Optional<GastoModel> getGastosModel(@PathVariable int id){
+	public Optional<Gasto> getGastosModel(@PathVariable int id){
 		return gastosRepository.findById(id);
 	}
 	
 	@PostMapping("/gasto")
-	public String createGasto(@RequestBody GastoModel gastosModel) {
+	public String createGasto(@RequestBody Gasto gastosModel) {
 		gastosRepository.save(gastosModel);
-		return "Se almaceno el gasto" + gastosModel.getId();
+		return "Se almaceno el gasto" + gastosModel.getIdGastos();
 	}
 	
 	@DeleteMapping("/deletegasto/{id}")
