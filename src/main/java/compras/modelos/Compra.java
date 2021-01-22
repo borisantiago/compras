@@ -2,25 +2,26 @@ package compras.modelos;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
+import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("compra")
+@Document(collection = "compra")
 public class Compra {
 	
 	@Id
-	private Long idCompra;
+	private int idCompra;
 	private Long IdPedido;
 	private Long idDocCompra;
 	private Date fechaCompra;
 	private Double recargoCompra;
 	private Double descuentoCompra;
 	private Long costoTotalCompra;
+	
 	public Compra() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Compra(Long idCompra, Long idPedido, Long idDocCompra, Date fechaCompra, Double recargoCompra,
+	public Compra(int idCompra, Long idPedido, Long idDocCompra, Date fechaCompra, Double recargoCompra,
 			Double descuentoCompra, Long costoTotalCompra) {
 		super();
 		this.idCompra = idCompra;
@@ -31,10 +32,10 @@ public class Compra {
 		this.descuentoCompra = descuentoCompra;
 		this.costoTotalCompra = costoTotalCompra;
 	}
-	public Long getIdCompra() {
+	public int getIdCompra() {
 		return idCompra;
 	}
-	public void setIdCompra(Long idCompra) {
+	public void setIdCompra(int idCompra) {
 		this.idCompra = idCompra;
 	}
 	public Long getIdPedido() {

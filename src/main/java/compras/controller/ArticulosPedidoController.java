@@ -33,13 +33,13 @@ public class ArticulosPedidoController {
 	@PostMapping("/productosPedido")
 	public String createProductosPedido(@RequestBody ArticulosPedido productosPedido) {
 		propediRepository.save(productosPedido);
-		return "Se guardo los productos del pedido : " + productosPedido.getIdPedido();
+		return "Se guardo los articulos del pedido : " + productosPedido.getIdPedido();
 	}
 	
 	@DeleteMapping("/deleteid/{id}")
 	public String deleteProductosPedido(@PathVariable int id) {
 		propediRepository.deleteById(id);
-		return "Se elimino los productos del pedido" + id;
+		return "Se elimino los artículos del pedido" + id;
 	}
 
 }

@@ -34,13 +34,13 @@ public class CompraController {
 	@PostMapping("/compra")
 	public String createCompra(@RequestBody Compra compra) {
 		compraRepository.save(compra);
-		return "Se almaceno el gasto" + compra.getIdCompra();
+		return "Se almaceno la compra : " + compra.getIdCompra();
 	}
 	
 	@DeleteMapping("/deletecompra/{id}")
 	public String deletePedido(@PathVariable long id) {
 		compraRepository.deleteById(id);
-		return "Se elemino el gasto : "+ id;
+		return "Se elemino la compra : "+ id;
 	}
 	
 	

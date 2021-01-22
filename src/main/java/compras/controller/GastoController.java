@@ -33,7 +33,7 @@ public class GastoController {
 	@PostMapping("/gasto")
 	public String createGasto(@RequestBody Gasto gastosModel) {
 		gastosRepository.save(gastosModel);
-		return "Se almaceno el gasto" + gastosModel.getIdGastos();
+		return "Se almaceno el gasto : " + gastosModel.getIdGastos();
 	}
 	
 	@DeleteMapping("/deletegasto/{id}")

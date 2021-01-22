@@ -2,7 +2,7 @@ package compras.modelos;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.Id;
+import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 

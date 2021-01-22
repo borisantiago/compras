@@ -35,7 +35,7 @@ public class PedidoController {
 	public String createPedido(@RequestBody Pedido pedidosModel){
 		pedidosRepository.save(pedidosModel);
 		//PedidosModel insertPedidosModel	= pedidosRepository.insert(pedidosModel);
-		return "pedido creado" + pedidosModel.getIdPedido();
+		return "pedido creado : " + pedidosModel.getIdPedido();
 	}
 	
 	@DeleteMapping("/delete/{id}")
