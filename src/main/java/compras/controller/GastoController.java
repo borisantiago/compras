@@ -13,32 +13,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import compras.modelos.Gasto;
 import compras.repository.GastoRepository;
+//import compras.service.GastoServices;
 
 @RestController
 public class GastoController {
 	
 	@Autowired 
-	private GastoRepository gastosRepository;
+	private GastoRepository service;
 	
 	@GetMapping("/gastos")
-	public List<Gasto> getAllGastos(){
-		return gastosRepository.findAll();
+	public List<Gasto> getAllGasto(){
+		return service.findAll();
 	}
 	
 	@GetMapping("/gasto/{id}")
-	public Optional<Gasto> getGastosModel(@PathVariable int id){
-		return gastosRepository.findById(id);
+	public Optional<Gasto> getGasto(@PathVariable int id){
+		return service.findById(id);
 	}
 	
 	@PostMapping("/gasto")
 	public String createGasto(@RequestBody Gasto gastosModel) {
-		gastosRepository.save(gastosModel);
+		
+		service.save(gastosModel);
 		return "Se almaceno el gasto : " + gastosModel.getIdGastos();
 	}
 	
 	@DeleteMapping("/deletegasto/{id}")
 	public String deletePedido(@PathVariable int id) {
-		gastosRepository.deleteById(id);
+		service.deleteById(id);
 		return "Se elemino el gasto : "+ id;
 	}
 	

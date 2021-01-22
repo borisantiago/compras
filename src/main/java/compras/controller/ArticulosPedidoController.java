@@ -39,7 +39,7 @@ public class ArticulosPedidoController {
 	@DeleteMapping("/deleteid/{id}")
 	public String deleteProductosPedido(@PathVariable int id) {
 		propediRepository.deleteById(id);
-		return "Se elimino los artículos del pedido" + id;
+		return "Se elimino los artículos del pedido : " + id;
 	}
 
 }

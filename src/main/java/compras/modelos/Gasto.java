@@ -1,8 +1,9 @@
 package compras.modelos;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import nonapi.io.github.classgraph.json.Id;
+//import nonapi.io.github.classgraph.json.Id;
 
 
 @Document(collection = "gasto")

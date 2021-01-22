@@ -1,14 +1,15 @@
 package compras.modelos;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import nonapi.io.github.classgraph.json.Id;
+//import nonapi.io.github.classgraph.json.Id;
 
 @Document(collection="articulosPedido")
 public class ArticulosPedido {
 	
 	@Id
-	private String idPedido;
+	private int idPedido;
 	private String codigoArticuloPedido;
 	private long cantidadArticuloPedido;
 	private Double precioArticuloPedido;
@@ -21,7 +22,7 @@ public class ArticulosPedido {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArticulosPedido(String idPedido, String codigoArticuloPedido, long cantidadArticuloPedido,
+	public ArticulosPedido(int idPedido, String codigoArticuloPedido, long cantidadArticuloPedido,
 			Double precioArticuloPedido, String nombreArticuloPedido, Boolean tieneIva, String idProveedor) {
 		super();
 		this.idPedido = idPedido;
@@ -33,11 +34,11 @@ public class ArticulosPedido {
 		this.idProveedor = idProveedor;
 	}
 
-	public String getIdPedido() {
+	public int getIdPedido() {
 		return idPedido;
 	}
 
-	public void setIdPedido(String idPedido) {
+	public void setIdPedido(int idPedido) {
 		this.idPedido = idPedido;
 	}
 
