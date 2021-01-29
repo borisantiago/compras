@@ -24,7 +24,6 @@ import compras.modelos.Pedido;
 import compras.repository.PedidoRepository;
 import compras.service.PedidoService;
 
-
 @RestController
 public class PedidoController {
 
@@ -36,9 +35,10 @@ public class PedidoController {
 		return pedidoService.findAll();
 	}
 	
-/*	@GetMapping("/pedidos2/{id}")
-	public Optional<Pedido> getPedidosModel(@PathVariable int id, @RequestBody Pedido pedido){
-		return pedidoService.findByIdPedido(id)
+	/*	
+ 	@GetMapping("/pedidos2/{id}")
+		public Optional<Pedido> getPedidosModel(@PathVariable int id, @RequestBody Pedido pedido){
+			return pedidoService.findByIdPedido(id)
 	}
 	*/
 	
@@ -46,8 +46,13 @@ public class PedidoController {
 	public String createPedido(@RequestBody Pedido pedido){
 		
 		if(pedidoService.findByIdPedido(pedido) == null){
-			pedidoService.createPedido(pedido);
-		return "pedido creado : " + pedido.getIdPedido();
+			
+			if(pedido.getIvaTotalArticulo()>0 && pedido.getCostoTotalPedido()>0) {
+				pedidoService.createPedido(pedido);
+				return "pedido creado : " + pedido.getIdPedido();
+			}else {
+				return "El IVA y COSTO TOTAL no puede ser negativo";
+			}
 		}else {
 			return "NEGADO, El id del pedido ya esta regsitrado id: " + pedido.getIdPedido();
 		}
@@ -56,12 +61,10 @@ public class PedidoController {
 	
 /*	
   
-  
-  
   @PostMapping("/pedido")
 	public String createPedido(@RequestBody Pedido pedido){
 		
-		if(pedidoService.findByIdPedido(pedido)== null) {
+		if(pedidoService.findByIdPedido(pedido) == null){
 			pedidoService.createPedido(pedido);
 		return "pedido creado : " + pedido.getIdPedido();
 		}else {

@@ -58,8 +58,16 @@ public class CompraController {
 	public String createCompra(@RequestBody Compra compra) {
 		
 		if(compraService.findById(compra.getIdCompra())==null) {
-			compraService.createCompra(compra);
-			return "Se almaceno la compra : " + compra.getIdCompra();
+			
+			
+			
+			if(compra.getCostoTotalCompra()>0) {
+				compraService.createCompra(compra);
+				return "Se almaceno la compra : " + compra.getIdCompra();
+			}else {
+				return "El costo de la compra no puede justifcarse con valores negativos";
+			}
+			
 		}else {
 			return "No se puede realizar la compra : " + compra.getIdCompra();
 		}
