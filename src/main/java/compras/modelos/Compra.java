@@ -11,22 +11,22 @@ public class Compra {
 	
 	@Id
 	private int idCompra;
-	private Long IdPedido;
-	private Long idDocCompra;
+	private int IdPedido;
+	private int idDocCompra;
 	private Date fechaCompra;
 	private Double recargoCompra;
 	private Double descuentoCompra;
-	private Long costoTotalCompra;
+	private Double costoTotalCompra;
 	
 	public Compra() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Compra(int idCompra, Long idPedido, Long idDocCompra, Date fechaCompra, Double recargoCompra,
-			Double descuentoCompra, Long costoTotalCompra) {
+	public Compra(int idCompra, int idPedido, int idDocCompra, Date fechaCompra, Double recargoCompra,
+			Double descuentoCompra, Double costoTotalCompra) {
 		super();
 		this.idCompra = idCompra;
-		IdPedido = idPedido;
+		this.IdPedido = idPedido;
 		this.idDocCompra = idDocCompra;
 		this.fechaCompra = fechaCompra;
 		this.recargoCompra = recargoCompra;
@@ -39,16 +39,16 @@ public class Compra {
 	public void setIdCompra(int idCompra) {
 		this.idCompra = idCompra;
 	}
-	public Long getIdPedido() {
+	public int getIdPedido() {
 		return IdPedido;
 	}
-	public void setIdPedido(Long idPedido) {
+	public void setIdPedido(int idPedido) {
 		IdPedido = idPedido;
 	}
-	public Long getIdDocCompra() {
+	public int getIdDocCompra() {
 		return idDocCompra;
 	}
-	public void setIdDocCompra(Long idDocCompra) {
+	public void setIdDocCompra(int idDocCompra) {
 		this.idDocCompra = idDocCompra;
 	}
 	public Date getFechaCompra() {
@@ -69,10 +69,10 @@ public class Compra {
 	public void setDescuentoCompra(Double descuentoCompra) {
 		this.descuentoCompra = descuentoCompra;
 	}
-	public Long getCostoTotalCompra() {
+	public Double getCostoTotalCompra() {
 		return costoTotalCompra;
 	}
-	public void setCostoTotalCompra(Long costoTotalCompra) {
+	public void setCostoTotalCompra(Double costoTotalCompra) {
 		this.costoTotalCompra = costoTotalCompra;
 	}
 	

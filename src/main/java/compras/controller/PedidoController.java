@@ -45,7 +45,7 @@ public class PedidoController {
 	@PostMapping("/pedido")
 	public String createPedido(@RequestBody Pedido pedido){
 		
-		if(pedidoService.findByIdPedido(pedido)== null) {
+		if(pedidoService.findByIdPedido(pedido) == null){
 			pedidoService.createPedido(pedido);
 		return "pedido creado : " + pedido.getIdPedido();
 		}else {
@@ -61,19 +61,20 @@ public class PedidoController {
   @PostMapping("/pedido")
 	public String createPedido(@RequestBody Pedido pedido){
 		
-		if(pedidoService.findByIdPedido(pedido.getIdPedido())== null) {
+		if(pedidoService.findByIdPedido(pedido)== null) {
 			pedidoService.createPedido(pedido);
 		return "pedido creado : " + pedido.getIdPedido();
 		}else {
-			return "pedido NO creado : " + pedido.getIdPedido();
+			return "NEGADO, El id del pedido ya esta regsitrado id: " + pedido.getIdPedido();
 		}
 		
 	}
+	*/
 	
 	@PutMapping("/pedido")
 	public String updateGasto(@RequestBody Pedido pedido) {
-		if(pedidosRepository.findById(pedido.getIdPedido()) != null ) {
-			pedidosRepository.save(pedido);
+		if(pedidoService.findById(pedido.getIdPedido()) != null ) {
+			pedidoService.updatePedido(pedido);
 		return "Se actualizo el gasto : " + pedido.getIdPedido();
 		}else
 		return "No se actualizo el gasto, no esta el id registrado : " + pedido.getIdPedido();
@@ -81,8 +82,8 @@ public class PedidoController {
 	
 	@DeleteMapping("/delete/{id}")
 	public String deletePedido (@PathVariable int id) {
-		pedidosRepository.deleteById(id);
+		pedidoService.deletePedido(id);
 		return "Se elimino el pedido : " +id;
 	}
-*/
+
 }

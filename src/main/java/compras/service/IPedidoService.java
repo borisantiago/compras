@@ -9,6 +9,8 @@ public interface IPedidoService {
 	List<Pedido> findAll();
 	
 	Pedido findByIdPedido(Pedido pedido);
+	//Pedido findByIdPedido(int idPedido);
+	
 	
 	Pedido findById(int id);
 	

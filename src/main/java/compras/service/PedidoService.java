@@ -8,24 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import compras.modelos.Pedido;
+import compras.repository.PedidoRepository;
 
-import compras.repository.PedidoRepository2;
 
 @Service
 public class PedidoService implements IPedidoService {
 
 	@Autowired
-	PedidoRepository2 pedidoRepository;
+	PedidoRepository pedidoRepository;
 	
 	@Override
 	public List<Pedido> findAll() {
 		return (List<Pedido>) pedidoRepository.findAll();
 	}
-
+	
+	
 	@Override
 	public Pedido findByIdPedido(Pedido pedido) {
 		return (Pedido) pedidoRepository.findByIdPedido(pedido.getIdPedido());
 	}
+	
+	 
+
+	
 	
 	@Override
 	public Pedido findById(int id) {

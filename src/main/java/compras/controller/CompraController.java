@@ -8,41 +8,77 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import compras.modelos.Compra;
-import compras.repository.CompraRepository;
+import compras.modelos.Pedido;
+import compras.service.CompraService;
+import compras.service.PedidoService;
+
 
 @RestController
 public class CompraController {
 
 	@Autowired
-	private CompraRepository compraRepository;
+	CompraService compraService;
+	
+	PedidoService pedidoService;
 	
 	
 	@GetMapping("/compras")
 	public List<Compra> getAllGastos(){
-		return compraRepository.findAll();
+		return compraService.findAll();
+	}
+	/*
+	@GetMapping("/compra/{id}")
+	public Optional<Compra> getCompraModel(@PathVariable int id, @RequestBody Compra compra){
+		return compraService.findById(compra.getIdCompra());
+	}
+	*/
+	
+	
+	/*
+	@PostMapping("/compra")
+	public String createCompra(@RequestBody Compra compra) {
+		
+		if(compraService.findById(compra.getIdCompra())==null) {
+			compraService.createCompra(compra);
+			return "Se almaceno la compra : " + compra.getIdCompra();
+		}else {
+			return "No se puede realizar la compra : " + compra.getIdCompra();
+		}
+		
 	}
 	
-	@GetMapping("/compra/{id}")
-	public Optional<Compra> getCompraModel(@PathVariable long id){
-		return compraRepository.findById(id);
-	}
+	*/
 	
 	@PostMapping("/compra")
 	public String createCompra(@RequestBody Compra compra) {
-		compraRepository.save(compra);
-		return "Se almaceno la compra : " + compra.getIdCompra();
+		
+		if(compraService.findById(compra.getIdCompra())==null) {
+			compraService.createCompra(compra);
+			return "Se almaceno la compra : " + compra.getIdCompra();
+		}else {
+			return "No se puede realizar la compra : " + compra.getIdCompra();
+		}
+		
 	}
 	
-	
+	@PutMapping("/compra")
+	public String updateCompra(@RequestBody Compra compra) {
+		if(compraService.findById(compra.getIdCompra())!=null) {
+			compraService.updateCompra(compra);
+			return "Se actualizo la infromacion del id : "+ compra.getIdCompra();	
+		}
+		return "No se puede actualizar, no existe el id escrito";
+		
+	}
 	
 	@DeleteMapping("/deletecompra/{id}")
-	public String deletePedido(@PathVariable long id) {
-		compraRepository.deleteById(id);
+	public String deletePedido(@PathVariable int id) {
+		compraService.deleteIdCompra(id);
 		return "Se elemino la compra : "+ id;
 	}
 	
