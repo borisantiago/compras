@@ -1,8 +1,11 @@
 package compras.modelos;
 
-import java.util.Date;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import org.springframework.data.annotation.Id;
+
 //import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,6 +19,8 @@ public class Pedido {
 	private Double costoTotalPedido;
 	private String estadoPedido;
 	private Double ivaTotalArticulo;
+	
+
 		
 	public Pedido() {
 		super();

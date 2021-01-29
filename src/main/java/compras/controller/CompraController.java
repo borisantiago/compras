@@ -59,8 +59,6 @@ public class CompraController {
 		
 		if(compraService.findById(compra.getIdCompra())==null) {
 			
-			
-			
 			if(compra.getCostoTotalCompra()>0) {
 				compraService.createCompra(compra);
 				return "Se almaceno la compra : " + compra.getIdCompra();

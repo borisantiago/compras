@@ -34,15 +34,25 @@ public class ArticulosPedidoController {
 	
 	@PostMapping("/productosPedido")
 	public String createProductosPedido(@RequestBody ArticulosPedido productosPedido) {
-		propediRepository.save(productosPedido);
-		return "Se guardo los articulos del pedido : " + productosPedido.getIdPedido();
+		
+		if(productosPedido.getCantidadArticuloPedido()>0 && productosPedido.getPrecioArticuloPedido()>0) {
+			propediRepository.save(productosPedido);
+			return "Se guardo los articulos del pedido : " + productosPedido.getIdPedido();
+		}else {
+			return "La cantidad de articulos y su costo debe justificar mayor a 0 ";
+		}
 	}
 	
 	@PutMapping("/productospedido")
 	public String updateGasto(@RequestBody ArticulosPedido productosPedido) {
 		if(propediRepository.findById(productosPedido.getIdPedido()) != null ) {
+			
+			if(productosPedido.getCantidadArticuloPedido()>0 && productosPedido.getPrecioArticuloPedido()>0) {
 			propediRepository.save(productosPedido);
-		return "Se actualizo el gasto : " + productosPedido.getIdPedido();
+			return "Se actualizo el gasto : " + productosPedido.getIdPedido();
+			}else {
+				return "La cantidad de articulos y su costo debe justificar mayor a 0 ";
+			}
 		}else
 		return "No se actualizo el gasto, no esta el id registrado : " + productosPedido.getIdPedido();
 	}

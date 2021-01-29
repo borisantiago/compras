@@ -34,9 +34,11 @@ public class GastoController {
 	
 	@PostMapping("/gasto")
 	public String createGasto(@RequestBody Gasto gastosModel) {
-		
-		service.save(gastosModel);
-		return "Se almaceno el gasto : " + gastosModel.getIdGastos();
+		if(gastosModel.getValorTotalGasto()>0) {
+			service.save(gastosModel);
+			return "Se almaceno el gasto : " + gastosModel.getIdGastos();
+		}
+		return "El valor del gasto debe justificarse con valores positivos : " + gastosModel.getIdGastos();
 	}
 	
 	@PutMapping("/gasto")
