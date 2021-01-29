@@ -22,7 +22,6 @@ public class CompraController {
 	private CompraRepository compraRepository;
 	
 	
-	
 	@GetMapping("/compras")
 	public List<Compra> getAllGastos(){
 		return compraRepository.findAll();

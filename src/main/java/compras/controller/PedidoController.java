@@ -4,40 +4,70 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import compras.modelos.Pedido;
 import compras.repository.PedidoRepository;
+import compras.service.PedidoService;
 
 
 @RestController
 public class PedidoController {
 
 	@Autowired
-	private PedidoRepository pedidosRepository; 
+	PedidoService pedidoService; 
 	
 	@GetMapping("/pedidos")
 	public List<Pedido> getAllPedidos(){
-		return pedidosRepository.findAll();
+		return pedidoService.findAll();
 	}
 	
-	@GetMapping("/pedidos2/{id}")
-	public Optional<Pedido> getPedidosModel(@PathVariable int id){
-		return pedidosRepository.findById(id);
+/*	@GetMapping("/pedidos2/{id}")
+	public Optional<Pedido> getPedidosModel(@PathVariable int id, @RequestBody Pedido pedido){
+		return pedidoService.findByIdPedido(id)
 	}
+	*/
 	
 	@PostMapping("/pedido")
-	public String createPedido(@RequestBody Pedido pedidosModel){
-		pedidosRepository.save(pedidosModel);
-		//PedidosModel insertPedidosModel	= pedidosRepository.insert(pedidosModel);
-		return "pedido creado : " + pedidosModel.getIdPedido();
+	public String createPedido(@RequestBody Pedido pedido){
+		
+		if(pedidoService.findByIdPedido(pedido)== null) {
+			pedidoService.createPedido(pedido);
+		return "pedido creado : " + pedido.getIdPedido();
+		}else {
+			return "NEGADO, El id del pedido ya esta regsitrado id: " + pedido.getIdPedido();
+		}
+		
+	}
+	
+/*	
+  
+  
+  
+  @PostMapping("/pedido")
+	public String createPedido(@RequestBody Pedido pedido){
+		
+		if(pedidoService.findByIdPedido(pedido.getIdPedido())== null) {
+			pedidoService.createPedido(pedido);
+		return "pedido creado : " + pedido.getIdPedido();
+		}else {
+			return "pedido NO creado : " + pedido.getIdPedido();
+		}
+		
 	}
 	
 	@PutMapping("/pedido")
@@ -54,5 +84,5 @@ public class PedidoController {
 		pedidosRepository.deleteById(id);
 		return "Se elimino el pedido : " +id;
 	}
-
+*/
 }
