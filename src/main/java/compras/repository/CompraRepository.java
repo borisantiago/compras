@@ -10,5 +10,5 @@ public interface CompraRepository extends CrudRepository<Compra, Integer> {
 	Compra findByIdPedido(int idPedido);
 	
 	Compra findByIdCompra(int idCompra);
-
+	
 }

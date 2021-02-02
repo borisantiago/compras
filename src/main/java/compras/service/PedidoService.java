@@ -22,15 +22,10 @@ public class PedidoService implements IPedidoService {
 		return (List<Pedido>) pedidoRepository.findAll();
 	}
 	
-	
 	@Override
 	public Pedido findByIdPedido(Pedido pedido) {
 		return (Pedido) pedidoRepository.findByIdPedido(pedido.getIdPedido());
 	}
-	
-	 
-
-	
 	
 	@Override
 	public Pedido findById(int id) {
@@ -58,16 +53,5 @@ public class PedidoService implements IPedidoService {
 		
 	}
 
-	
-
-	
-
-
-
-	
-
-
-
-	
 	
 }

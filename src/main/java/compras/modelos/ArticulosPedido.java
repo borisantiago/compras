@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ArticulosPedido {
 	
 	@Id
+	private int idArticulo;
 	private int idPedido;
 	private String codigoArticuloPedido;
 	private long cantidadArticuloPedido;
@@ -22,9 +23,10 @@ public class ArticulosPedido {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArticulosPedido(int idPedido, String codigoArticuloPedido, long cantidadArticuloPedido,
+	public ArticulosPedido(int idArticulo, int idPedido, String codigoArticuloPedido, long cantidadArticuloPedido,
 			Double precioArticuloPedido, String nombreArticuloPedido, Boolean tieneIva, String idProveedor) {
 		super();
+		this.idArticulo = idArticulo;
 		this.idPedido = idPedido;
 		this.codigoArticuloPedido = codigoArticuloPedido;
 		this.cantidadArticuloPedido = cantidadArticuloPedido;
@@ -32,6 +34,14 @@ public class ArticulosPedido {
 		this.nombreArticuloPedido = nombreArticuloPedido;
 		this.tieneIva = tieneIva;
 		this.idProveedor = idProveedor;
+	}
+	
+	public int getIdArticulo() {
+		return idArticulo;
+	}
+
+	public void setIdArticulo(int idArticulo) {
+		this.idArticulo = idArticulo;
 	}
 
 	public int getIdPedido() {

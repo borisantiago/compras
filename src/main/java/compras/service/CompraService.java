@@ -7,11 +7,26 @@ import org.springframework.stereotype.Service;
 
 import compras.modelos.Compra;
 import compras.repository.CompraRepository;
+import compras.repository.PedidoRepository;
 
 @Service
 public class CompraService implements ICompraService {
 	@Autowired
 	CompraRepository compraRepository;
+	
+	
+	/*
+ 	PedidoRepository pedidoRespository;
+ 	
+	 //metodo buscar por id pedido, clave foranea
+	  
+	public Boolean findByIdPedido2(int id){
+		if(pedidoRespository.findByIdPedido(id) != null) {
+			return true;
+		}
+			return false;
+	}
+	*/
 	
 	@Override
 	public List<Compra> findAll() {

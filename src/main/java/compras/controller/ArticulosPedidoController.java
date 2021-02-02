@@ -13,42 +13,50 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import compras.modelos.ArticulosPedido;
-import compras.modelos.Gasto;
+
 import compras.repository.ArticulosPedidoRepository;
+import compras.service.ArticulosPedidoService;
 
 @RestController
 public class ArticulosPedidoController {
 	
 	@Autowired
-	private ArticulosPedidoRepository propediRepository;
+	ArticulosPedidoService APService;
 	
 	@GetMapping("/productospedido")
 	public List<ArticulosPedido> getProdcutosPedido(){
-		return propediRepository.findAll();
+		return APService.findAll();
 	}
 	
+	/*
 	@GetMapping("/productospedido/{id}")
 	public Optional<ArticulosPedido> getProductosPedido(@PathVariable int id){
-		return propediRepository.findById(id);
+		return APService.findByIdPedido(id);
 	}
+	*/
 	
 	@PostMapping("/productosPedido")
 	public String createProductosPedido(@RequestBody ArticulosPedido productosPedido) {
 		
-		if(productosPedido.getCantidadArticuloPedido()>0 && productosPedido.getPrecioArticuloPedido()>0) {
-			propediRepository.save(productosPedido);
-			return "Se guardo los articulos del pedido : " + productosPedido.getIdPedido();
+		if(APService.findById(productosPedido.getIdArticulo()) == null) {
+			if(productosPedido.getCantidadArticuloPedido()>0 && productosPedido.getPrecioArticuloPedido()>0) {
+				APService.createArticulosPedido(productosPedido);
+				return "Se guardo los articulos del pedido : " + productosPedido.getIdPedido();
+			}else {
+				return "La cantidad de articulos y su costo debe justificar mayor a 0 ";
+			}
 		}else {
-			return "La cantidad de articulos y su costo debe justificar mayor a 0 ";
+			return "El id del articulo ya esta regsitrado : " + productosPedido.getIdArticulo();
 		}
+		
 	}
 	
 	@PutMapping("/productospedido")
 	public String updateGasto(@RequestBody ArticulosPedido productosPedido) {
-		if(propediRepository.findById(productosPedido.getIdPedido()) != null ) {
+		if(APService.findById(productosPedido.getIdPedido()) != null ) {
 			
 			if(productosPedido.getCantidadArticuloPedido()>0 && productosPedido.getPrecioArticuloPedido()>0) {
-			propediRepository.save(productosPedido);
+				APService.createArticulosPedido(productosPedido);
 			return "Se actualizo el gasto : " + productosPedido.getIdPedido();
 			}else {
 				return "La cantidad de articulos y su costo debe justificar mayor a 0 ";
@@ -59,7 +67,7 @@ public class ArticulosPedidoController {
 	
 	@DeleteMapping("/deleteid/{id}")
 	public String deleteProductosPedido(@PathVariable int id) {
-		propediRepository.deleteById(id);
+		APService.deleteById(id);
 		return "Se elimino los artículos del pedido : " + id;
 	}
 
