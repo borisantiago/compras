@@ -49,7 +49,7 @@ public class ArticulosPedidoService implements IArticulosPedido {
 	
 	
 	//Creados
-	double total = 0;
+	public double total = 0;
 	
 	public double costoTotalArticulo(int cantidad, double precio, boolean iva) {
 		total= cantidad * precio;

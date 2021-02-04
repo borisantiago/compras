@@ -1,28 +1,15 @@
 package compras.repository;
 
 
-//import java.util.List;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+//import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import compras.modelos.Gasto;
 
 
-public interface GastoRepository extends MongoRepository<Gasto, Integer> {
-	
-//public interface GastoRepository {
-	
-	/*List<Gasto> findAll();
-	
-	Gasto findById(int id);
-	
+//public interface GastoRepository extends MongoRepository<Gasto, Integer> {
+public interface GastoRepository extends CrudRepository<Gasto, Integer> {
 
-	Gasto findIdGasto(int idGasto);
-	
-	Gasto updateGasto(Gasto gasto);
-	
-	void deleteIdGasto(int idGasto);
-	
-	void deleteAllGasto();*/
 	
 }

@@ -3,28 +3,35 @@ package compras.modelos;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import compras.service.ArticulosPedidoService;
+
 //import nonapi.io.github.classgraph.json.Id;
 
 @Document(collection="articulosPedido")
 public class ArticulosPedido {
 	
+	//ArticulosPedidoService articulosPedidoService; 
+	
 	@Id
 	private int idArticulo;
 	private int idPedido;
 	private String codigoArticuloPedido;
-	private long cantidadArticuloPedido;
+	private int cantidadArticuloPedido;
 	private Double precioArticuloPedido;
 	private String nombreArticuloPedido;
 	private Boolean tieneIva;
 	private String idProveedor;
+	
+	private Double precioTotal;
 	
 	public ArticulosPedido() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArticulosPedido(int idArticulo, int idPedido, String codigoArticuloPedido, long cantidadArticuloPedido,
-			Double precioArticuloPedido, String nombreArticuloPedido, Boolean tieneIva, String idProveedor) {
+	public ArticulosPedido(int idArticulo, int idPedido, String codigoArticuloPedido, int cantidadArticuloPedido,
+			Double precioArticuloPedido, String nombreArticuloPedido, Boolean tieneIva, String idProveedor, 
+			Double precioTotal) {
 		super();
 		this.idArticulo = idArticulo;
 		this.idPedido = idPedido;
@@ -34,6 +41,8 @@ public class ArticulosPedido {
 		this.nombreArticuloPedido = nombreArticuloPedido;
 		this.tieneIva = tieneIva;
 		this.idProveedor = idProveedor;
+		
+		this.precioTotal = precioTotal;
 	}
 	
 	public int getIdArticulo() {
@@ -60,11 +69,11 @@ public class ArticulosPedido {
 		this.codigoArticuloPedido = codigoArticuloPedido;
 	}
 
-	public long getCantidadArticuloPedido() {
+	public int getCantidadArticuloPedido() {
 		return cantidadArticuloPedido;
 	}
 
-	public void setCantidadArticuloPedido(long cantidadArticuloPedido) {
+	public void setCantidadArticuloPedido(int cantidadArticuloPedido) {
 		this.cantidadArticuloPedido = cantidadArticuloPedido;
 	}
 
@@ -99,6 +108,16 @@ public class ArticulosPedido {
 	public void setIdProveedor(String idProveedor) {
 		this.idProveedor = idProveedor;
 	}
+
+	public Double getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(Double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+	 
+	
 
 
 }

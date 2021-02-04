@@ -35,6 +35,26 @@ public class ArticulosPedidoController {
 	}
 	*/
 	
+	/*
+	 //mandar parametros a a metodo
+	  
+	public double total = 0;
+	
+	@GetMapping("/pedidocosto/{id}")
+	public Double gastoTotal(@PathVariable int id, @RequestBody ArticulosPedido productosPedido) {
+			
+		if(APService.findById(id) == null) {
+			int id = productosPedido.setIdArticulo(idArticulo);
+			APService.costoTotalArticulo(productosPedido.getCantidadArticuloPedido(), productosPedido.getPrecioArticuloPedido(),
+					productosPedido.getTieneIva());
+			
+		}
+				
+		return APService.total;
+	}
+	
+	*/
+	
 	@PostMapping("/productosPedido")
 	public String createProductosPedido(@RequestBody ArticulosPedido productosPedido) {
 		
